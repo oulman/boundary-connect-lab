@@ -21,3 +21,7 @@ terraform {
 provider "aws" {
   # Configuration options
 }
+
+provider "hcp" {
+  # Configuration options
+}
