@@ -52,14 +52,14 @@ variable "hcp_cloud_provider" {
   default     = "aws"
 }
 
-variable "hcp_peering_id" {
-  description = "The ID of the HCP consul peering connection."
+variable "hcp_hvn_peering_id" {
+  description = "The ID of the HCP HVN peering connection."
   type        = string
   default     = "hcp-aws-use1-peering"
 }
 
-variable "hcp_route_id" {
+variable "hcp_hvn_route_id" {
   description = "The ID of the HCP HVN route."
   type        = string
-  default     = "hcp-aws-use1-route"
+  default     = "hcp-hvn-aws-use1-route"
 }
