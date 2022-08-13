@@ -47,3 +47,8 @@ output "vpc_name" {
   description = "The name of the VPC specified as argument to this module"
   value       = module.vpc.name
 }
+
+output "hcp_hvn_aws_use1_id" {
+  description = "The HCP HVN id created in AWS us-east-1"
+  value       = hcp_hvn.aws_use1_hvn.id
+}
