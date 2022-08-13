@@ -49,6 +49,11 @@ output "vpc_name" {
 }
 
 output "hcp_hvn_aws_use1_id" {
-  description = "The HCP HVN id created in AWS us-east-1"
+  description = "The fully qualified HCP HVN id created in AWS us-east-1"
   value       = hcp_hvn.aws_use1_hvn.id
+}
+
+output "hcp_hvn_aws_use1_hvn_id" {
+  description = "The HCP HVN id created in AWS us-east-1"
+  value       = hcp_hvn.aws_use1_hvn.hvn_id
 }
