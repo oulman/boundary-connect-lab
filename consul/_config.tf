@@ -32,7 +32,7 @@ data "terraform_remote_state" "global" {
   config = {
     organization = "jamesoulman"
     workspaces = {
-      name = "global"
+      name = "boundary-connect-lab-global"
     }
   }
 }
