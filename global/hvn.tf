@@ -5,7 +5,7 @@ data "aws_arn" "vpc" {
 
 resource "hcp_hvn" "aws_use1_hvn" {
   hvn_id         = var.hcp_hvn_id
-  cloud_provider = var.cloud_provider
+  cloud_provider = var.hcp_cloud_provider
   region         = data.aws_arn.vpc.region
 }
 
