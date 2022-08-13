@@ -16,3 +16,19 @@ resource "hcp_aws_network_peering" "hcp_use1_vpc" {
   peer_account_id = module.vpc.vpc_owner_id
   peer_vpc_region = data.aws_arn.vpc.region
 }
+
+resource "aws_vpc_peering_connection_accepter" "hcp_use1_vpc" {
+  vpc_peering_connection_id = hcp_aws_network_peering.hcp_use1_vpc.provider_peering_id
+  auto_accept               = true
+}
+
+data "aws_route_table" "vpc" {
+  vpc_id = module.vpc.vpc_id
+}
+
+resource "aws_route" "peer_route" {
+  route_table_id            = data.aws_route_table.vpc.id
+  destination_cidr_block    = hcp_hvn.aws_use1_hvn.cidr_block
+  vpc_peering_connection_id = hcp_aws_network_peering.hcp_use1_vpc.provider_peering_id
+}
+
