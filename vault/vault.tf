@@ -5,6 +5,6 @@ resource "hcp_vault_cluster" "vault" {
   public_endpoint = var.public_endpoint
 }
 
-resource "hcp_vault_cluster_admin_token" "vault_admin_token" {
-  cluster_id = hcp_vault_cluster.vault.cluster_id
-}
+#resource "hcp_vault_cluster_admin_token" "vault_admin_token" {
+#  cluster_id = hcp_vault_cluster.vault.cluster_id
+#}
