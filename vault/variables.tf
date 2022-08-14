@@ -7,7 +7,7 @@ variable "cluster_id" {
 variable "tier" {
   description = "The tier of the HCP Consul cluster."
   type        = string
-  default     = "development"
+  default     = "dev"
 }
 
 variable "public_endpoint" {
