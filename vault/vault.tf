@@ -1,18 +1,6 @@
-variable "cluster_id" {
-  description = "The name of the HCP Consul cluster."
-  type        = string
-  default     = ""
+resource "hcp_vault_cluster" "vault" {
+  hvn_id          = data.terraform_remote_state.global.outputs.hcp_hvn_aws_use1_hvn_id
+  cluster_id      = var.cluster_id
+  tier            = var.tier
+  public_endpoint = var.public_endpoint
 }
-
-variable "tier" {
-  description = "The tier of the HCP Consul cluster."
-  type        = string
-  default     = "dev"
-}
-
-variable "public_endpoint" {
-  description = "The tier of the HCP Consul cluster."
-  type        = bool
-  default     = false
-}
-
