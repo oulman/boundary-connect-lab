@@ -4,3 +4,7 @@ resource "hcp_vault_cluster" "vault" {
   tier            = var.tier
   public_endpoint = var.public_endpoint
 }
+
+resource "hcp_vault_cluster_admin_token" "vault_admin_token" {
+  cluster_id = hcp_vault_cluster.vault.cluster_id
+}
