@@ -16,12 +16,8 @@ terraform {
 
 provider "vault" {
   address = data.terraform_remote_state.vault.outputs.hcp_vault_public_endpoint_url
-  token = hcp_vault_cluster_admin_token.vault.token
+  token = var.hcp_vault_token
   namespace = "admin"
-}
-
-resource "hcp_vault_cluster_admin_token" "vault" {
-  cluster_id = data.terraform_remote_state.vault.outputs.hcp_vault_cluster_id
 }
 
 data "terraform_remote_state" "vault" {

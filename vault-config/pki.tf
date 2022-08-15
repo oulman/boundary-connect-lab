@@ -10,6 +10,7 @@ resource "vault_mount" "pki_root" {
   max_lease_ttl_seconds = 60 * 60 * 24 * 365 * 5
 }
 
+
 resource "vault_pki_secret_backend_config_urls" "pki_root_config_urls" {
   backend                 = vault_mount.pki_root.path
   issuing_certificates    = ["${data.terraform_remote_state.vault.outputs.hcp_vault_private_endpoint_url}/v1/${vault_mount.pki_root.path}/ca"]
