@@ -12,6 +12,6 @@ resource "vault_mount" "pki_root" {
 
 resource "vault_pki_secret_backend_config_urls" "pki_root_config_urls" {
   backend                 = vault_mount.pki_root.path
-  issuing_certificates    = ["${data.terraform_remote_state.vault.hcp_vault_private_endpoint_url}/v1/${vault_mount.pki_root.path}/ca"]
-  crl_distribution_points = ["${data.terraform_remote_state.vault.hcp_vault_private_endpoint_url}/v1/${vault_mount.pki_root.path}/crl"]
+  issuing_certificates    = ["${data.terraform_remote_state.vault.outputs.hcp_vault_private_endpoint_url}/v1/${vault_mount.pki_root.path}/ca"]
+  crl_distribution_points = ["${data.terraform_remote_state.vault.outputs.hcp_vault_private_endpoint_url}/v1/${vault_mount.pki_root.path}/crl"]
 }
