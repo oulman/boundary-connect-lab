@@ -25,7 +25,7 @@ resource "aws_iam_user_policy" "hcp_vault_auth_policy" {
 
 resource "aws_iam_user_policy_attachment" "hcp_vault_attach" {
   user       = aws_iam_user.hcp_vault.name
-  policy_arn = aws_iam_policy.hcp_vault_policy.arn
+  policy_arn = aws_iam_policy.hcp_vault_auth_policy.arn
 }
 
 resource "aws_iam_access_key" "hcp_vault" {
