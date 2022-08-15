@@ -21,7 +21,7 @@ provider "vault" {
 }
 
 resource "hcp_vault_cluster_admin_token" "vault_admin_token" {
-  cluster_id = data.terraform_remote_state.vault.cluster_id
+  cluster_id = data.terraform_remote_state.vault.hcp_vault_cluster_id
 }
 
 data "terraform_remote_state" "vault" {
