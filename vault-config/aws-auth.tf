@@ -52,3 +52,33 @@ resource "vault_aws_auth_backend_client" "aws" {
 ##
 ## roles
 ##
+
+data "aws_caller_identity" "current" {}
+
+resource "vault_aws_auth_backend_role" "nomad-server" {
+  backend                         = vault_auth_backend.aws.path
+  role                            = "nomad-server-role"
+  auth_type                       = "iam"
+  bound_vpc_ids                   = [data.terraform_remote_state.vault.outputs.vpc_id]
+  bound_subnet_ids                = [data.terraform_remote_state.vault.outputs.private_subnets]
+  bound_iam_instance_profile_arns = ["arn:aws:iam::${data.aws_caller_identity.current.acccount_id}:instance-profile/nomad-server"]
+  inferred_entity_type            = "ec2_instance"
+  inferred_aws_region             = "us-east-1"
+  token_ttl                       = 60
+  token_max_ttl                   = 120
+  token_policies                  = ["default", "nomad-server", "nomad-cluster"]
+}
+
+resource "vault_aws_auth_backend_role" "nomad-client" {
+  backend                         = vault_auth_backend.aws.path
+  role                            = "nomad-client-role"
+  auth_type                       = "iam"
+  bound_vpc_ids                   = [data.terraform_remote_state.vault.outputs.vpc_id]
+  bound_subnet_ids                = [data.terraform_remote_state.vault.outputs.private_subnets]
+  bound_iam_instance_profile_arns = ["arn:aws:iam::${data.aws_caller_identity.current.acccount_id}:instance-profile/nomad-client"]
+  inferred_entity_type            = "ec2_instance"
+  inferred_aws_region             = "us-east-1"
+  token_ttl                       = 60
+  token_max_ttl                   = 120
+  token_policies                  = ["default", "nomad-client", "nomad-cluster"]
+}

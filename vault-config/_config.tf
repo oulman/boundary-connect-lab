@@ -31,3 +31,13 @@ data "terraform_remote_state" "vault" {
   }
 }
 
+data "terraform_remote_state" "global" {
+  backend = "remote"
+
+  config = {
+    organization = "jamesoulman"
+    workspaces = {
+      name = "boundary-connect-lab-global"
+    }
+  }
+}
