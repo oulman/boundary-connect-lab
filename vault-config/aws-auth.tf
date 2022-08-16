@@ -1,3 +1,7 @@
+##
+## aws auth backend IAM configuration
+##
+
 resource "aws_iam_user" "hcp_vault" {
   name = "hcp-vault"
   path = "/"
@@ -30,3 +34,21 @@ resource "aws_iam_user_policy_attachment" "hcp_vault_attach" {
 resource "aws_iam_access_key" "hcp_vault" {
   user = aws_iam_user.hcp_vault.name
 }
+
+##
+## backend configuration
+##
+
+resource "vault_auth_backend" "aws" {
+  type = "aws"
+}
+
+resource "vault_aws_auth_backend_client" "aws" {
+  backend    = vault_auth_backend.aws.path
+  access_key = aws_iam_access_key.hcp_vault.id
+  secret_key = aws_iam_access_key.hcp_vault.secret
+}
+
+##
+## roles
+##
