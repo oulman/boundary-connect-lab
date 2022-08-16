@@ -60,7 +60,7 @@ resource "vault_aws_auth_backend_role" "nomad-server" {
   role                            = "nomad-server-role"
   auth_type                       = "iam"
   bound_vpc_ids                   = [data.terraform_remote_state.global.outputs.vpc_id]
-  bound_subnet_ids                = [data.terraform_remote_state.global.outputs.private_subnets]
+  bound_subnet_ids                = data.terraform_remote_state.global.outputs.private_subnets
   bound_iam_instance_profile_arns = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:instance-profile/nomad-server"]
   inferred_entity_type            = "ec2_instance"
   inferred_aws_region             = "us-east-1"
@@ -74,7 +74,7 @@ resource "vault_aws_auth_backend_role" "nomad-client" {
   role                            = "nomad-client-role"
   auth_type                       = "iam"
   bound_vpc_ids                   = [data.terraform_remote_state.global.outputs.vpc_id]
-  bound_subnet_ids                = [data.terraform_remote_state.global.outputs.private_subnets]
+  bound_subnet_ids                = data.terraform_remote_state.global.outputs.private_subnets
   bound_iam_instance_profile_arns = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:instance-profile/nomad-client"]
   inferred_entity_type            = "ec2_instance"
   inferred_aws_region             = "us-east-1"
