@@ -61,7 +61,7 @@ resource "vault_aws_auth_backend_role" "nomad-server" {
   auth_type                       = "iam"
   bound_vpc_ids                   = [data.terraform_remote_state.vault.outputs.vpc_id]
   bound_subnet_ids                = [data.terraform_remote_state.vault.outputs.private_subnets]
-  bound_iam_instance_profile_arns = ["arn:aws:iam::${data.aws_caller_identity.current.acccount_id}:instance-profile/nomad-server"]
+  bound_iam_instance_profile_arns = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:instance-profile/nomad-server"]
   inferred_entity_type            = "ec2_instance"
   inferred_aws_region             = "us-east-1"
   token_ttl                       = 60
@@ -75,7 +75,7 @@ resource "vault_aws_auth_backend_role" "nomad-client" {
   auth_type                       = "iam"
   bound_vpc_ids                   = [data.terraform_remote_state.vault.outputs.vpc_id]
   bound_subnet_ids                = [data.terraform_remote_state.vault.outputs.private_subnets]
-  bound_iam_instance_profile_arns = ["arn:aws:iam::${data.aws_caller_identity.current.acccount_id}:instance-profile/nomad-client"]
+  bound_iam_instance_profile_arns = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:instance-profile/nomad-client"]
   inferred_entity_type            = "ec2_instance"
   inferred_aws_region             = "us-east-1"
   token_ttl                       = 60
